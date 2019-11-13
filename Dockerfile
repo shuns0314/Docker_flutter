@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     wget \
     xz-utils \
+    openjdk-8-jre \
     && mkdir /works \
     && sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -' \
     && sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list' \
@@ -23,6 +24,8 @@ RUN apt-get update && apt-get install -y \
 ENV PATH="${PATH}:/usr/lib/dart/bin/"
 ENV PATH="${PATH}:/root/.pub-cache/bin"
 ENV PATH="${PATH}:/works/development/flutter/bin"
+ENV PATH="${PATH}:/works/development/tools/bin"
+
 RUN pub global activate webdev && pub global activate stagehand
 WORKDIR /works/development
 RUN tar xf /flutter_linux_v1.9.1+hotfix.6-stable.tar.xz\
